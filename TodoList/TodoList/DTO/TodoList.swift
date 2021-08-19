@@ -22,4 +22,10 @@ class Todolist{
         self.tStar = tStar
     }
     
+    init(id: Int, tDate:String?, tList:String?) {
+        self.id = id
+        self.tDate = tDate
+        self.tList = tList
+    }
+    
 }
