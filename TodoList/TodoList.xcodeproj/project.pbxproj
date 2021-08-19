@@ -15,6 +15,7 @@
 		699457D326C7F603002AD88D /* ShareVar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 699457D226C7F603002AD88D /* ShareVar.swift */; };
 		708FADF226CDF71E002B46F3 /* TodoList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 708FADF126CDF71E002B46F3 /* TodoList.swift */; };
 		708FADF526CDFDFE002B46F3 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 708FADF426CDFDFE002B46F3 /* SearchViewController.swift */; };
+		708FADF726CE08EC002B46F3 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 708FADF626CE08EC002B46F3 /* SearchTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		699457D226C7F603002AD88D /* ShareVar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareVar.swift; sourceTree = "<group>"; };
 		708FADF126CDF71E002B46F3 /* TodoList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoList.swift; sourceTree = "<group>"; };
 		708FADF426CDFDFE002B46F3 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		708FADF626CE08EC002B46F3 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +87,7 @@
 			isa = PBXGroup;
 			children = (
 				708FADF426CDFDFE002B46F3 /* SearchViewController.swift */,
+				708FADF626CE08EC002B46F3 /* SearchTableViewCell.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -162,6 +165,7 @@
 				708FADF526CDFDFE002B46F3 /* SearchViewController.swift in Sources */,
 				699457D326C7F603002AD88D /* ShareVar.swift in Sources */,
 				699457BF26C7F479002AD88D /* AppDelegate.swift in Sources */,
+				708FADF726CE08EC002B46F3 /* SearchTableViewCell.swift in Sources */,
 				699457C126C7F479002AD88D /* SceneDelegate.swift in Sources */,
 				708FADF226CDF71E002B46F3 /* TodoList.swift in Sources */,
 			);
