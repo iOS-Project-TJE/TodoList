@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SQLite3
 import FSCalendar
 
 class CalendarViewController: UIViewController {
@@ -13,13 +14,17 @@ class CalendarViewController: UIViewController {
     @IBOutlet weak var calendar: FSCalendar!
     @IBOutlet weak var calendarTableView: UITableView!
     
+    var db: OpaquePointer?
     let formatter = DateFormatter()
     var dates = [Date]()
+    var calendarList: [Todolist] = []
+    let now = Date()
+    var tDate: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        sqliteSetting()
         initDesignSetting()
         initFuncSetting()
         
@@ -30,29 +35,73 @@ class CalendarViewController: UIViewController {
         calendarTableView.dataSource = self
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        readValues()
+    }
+    
+    func sqliteSetting() {
+        let fileURL = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false).appendingPathComponent("todoList.sqlite")
+        
+        if sqlite3_open(fileURL.path, &db) != SQLITE_OK{
+            print("error opening database")
+        }
+        
+        if sqlite3_exec(db, "CREATE TABLE IF NOT EXISTS todo (id INTEGER PRIMARY KEY AUTOINCREMENT, tDate TEXT, tList TEXT, tState TEXT, tStar TEXT)",nil,nil,nil) != SQLITE_OK{
+            let errmsg = String(cString: sqlite3_errmsg(db)!)
+            print("error creating table: \(errmsg)")
+        }
+    }
+    
     func initDesignSetting() {
         calendar.locale = Locale(identifier: "ko_KR")
+        calendar.today = nil
+
         calendar.appearance.headerMinimumDissolvedAlpha = 0.0
         calendar.appearance.headerDateFormat = "YYYY년 MM월"
         calendar.appearance.weekdayTextColor = .black
         calendar.appearance.headerTitleColor = UIColor(displayP3Red: 65/255, green: 99/225, blue: 135/255, alpha: 1)
         calendar.appearance.headerTitleFont = .boldSystemFont(ofSize: 20)
         calendar.appearance.selectionColor = UIColor(displayP3Red: 65/255, green: 99/225, blue: 135/255, alpha: 1)
-        calendar.appearance.todayColor = UIColor(displayP3Red: 65/255, green: 99/225, blue: 135/255, alpha: 1)
-        
         calendar.appearance.eventSelectionColor = UIColor(displayP3Red: 65/255, green: 99/225, blue: 135/255, alpha: 1)
         calendar.appearance.eventDefaultColor = UIColor(displayP3Red: 65/255, green: 99/225, blue: 135/255, alpha: 1)
         
         calendarTableView.separatorStyle = .none
+        // calendar.selectedDate
     }
     
     func initFuncSetting() {
         formatter.locale = Locale(identifier: "ko_KR")
         formatter.dateFormat = "yyyy-MM-dd"
+        tDate = formatter.string(from: now)
               
         let xmas = formatter.date(from: "2021-08-25")
         let sampledate = formatter.date(from: "2021-08-22")
         dates = [xmas!, sampledate!]
+    }
+    
+    func readValues(){
+        calendarList.removeAll()
+        
+        let queryString = "SELECT id, tDate, tList FROM todo where tDate = '\(tDate)'"
+        print(queryString)
+        
+        var stmt: OpaquePointer?
+
+        if sqlite3_prepare(db, queryString, -1, &stmt, nil) != SQLITE_OK{
+            let errmsg = String(cString: sqlite3_errmsg(db)!)
+            print("error preparing select: \(errmsg)")
+            return
+        }
+        
+        while (sqlite3_step(stmt) == SQLITE_ROW) {
+            let id = sqlite3_column_int(stmt, 0)
+            let tDate = String(cString: sqlite3_column_text(stmt, 1))
+            let tList = String(cString: sqlite3_column_text(stmt, 2))
+            
+            calendarList.append(Todolist(id: Int(id), tDate: tDate, tList: tList))
+        }
+        self.calendarTableView.reloadData()
+        
     }
 
     /*
@@ -98,7 +147,21 @@ extension CalendarViewController: UITableViewDataSource {
         cell.btnUncheck.isHidden = true
         cell.btnCheck.isHidden = false
         cell.lblTodo.text = "안녕하세요"
+        // cell.lblTodo.attributedText = attributeString
+        // attributeString.addAttribute(.baselineOffset, value: 0, range: (text as NSString).range(of:"Zedd"))
+        
+        let attributedText = NSMutableAttributedString(string: cell.lblTodo.text!)
+        cell.lblTodo.attributedText = attributedText
 
+        // 취소선 구현
+//        let todo = NSMutableAttributedString(string: cell.lblTodo.text!)
+//        todo.beauty.align(.center).strikethrough(1)
+//        cell.lblTodo.attributedText = todo
+        
+        attributedText.addAttribute(.baselineOffset, value: 0, range: (cell.lblTodo.text! as NSString).range(of:cell.lblTodo.text!))
+        attributedText.addAttribute(.strikethroughStyle, value: 1, range: (cell.lblTodo.text! as NSString).range(of:cell.lblTodo.text!))
+
+        
         return cell
     }
 
