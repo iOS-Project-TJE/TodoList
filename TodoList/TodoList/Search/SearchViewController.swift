@@ -8,7 +8,7 @@
 import UIKit
 import SQLite3
 
-class SearchViewController: UIViewController {
+class SearchViewController: UIViewController , UITextFieldDelegate{
     
     @IBOutlet weak var lblFirst: UILabel!
     @IBOutlet weak var lblNoItem: UILabel!
@@ -17,9 +17,12 @@ class SearchViewController: UIViewController {
 
     var db: OpaquePointer?
     var searchTodoList: [Todolist] = []
+    var search : String = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.tfSearch.addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: .editingChanged)
         
         let fileURL = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false).appendingPathComponent("todoList.sqlite")
         
@@ -46,7 +49,7 @@ class SearchViewController: UIViewController {
     func readValues(){
         searchTodoList.removeAll()
         
-        let queryString = "SELECT id, tDate, tList FROM todo where tList like '%\(tfSearch.text!)%'"
+        let queryString = "SELECT id, tDate, tList FROM todo where tList like '%\(search)%'"
         
         var stmt: OpaquePointer?
 
@@ -80,13 +83,12 @@ class SearchViewController: UIViewController {
             lblFirst.isHidden = true
         }
     }
-    
-    
-    @IBAction func btmSerch(_ sender: UIButton) {
+
+    @objc func textFieldDidChange(_ sender: Any?) {
+        self.search = self.tfSearch.text!
         readValues()
         
-    }
-    
+      }
     
     @IBAction func btnDelete(_ sender: UIButton) {
         
@@ -164,4 +166,3 @@ extension SearchViewController : UITableViewDataSource, UITableViewDelegate{
     }
   
 }
-
