@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		321E3E9D26CF65450070432F /* CalendarTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321E3E9C26CF65450070432F /* CalendarTableViewCell.swift */; };
 		699457BF26C7F479002AD88D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 699457BE26C7F479002AD88D /* AppDelegate.swift */; };
 		699457C126C7F479002AD88D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 699457C026C7F479002AD88D /* SceneDelegate.swift */; };
 		699457C626C7F479002AD88D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 699457C426C7F479002AD88D /* Main.storyboard */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		321E3E9C26CF65450070432F /* CalendarTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarTableViewCell.swift; sourceTree = "<group>"; };
 		52AF64F63441CB9C9256D2C2 /* Pods_TodoList.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TodoList.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5608983BC85C4020F478FD71 /* Pods-TodoList.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TodoList.release.xcconfig"; path = "Target Support Files/Pods-TodoList/Pods-TodoList.release.xcconfig"; sourceTree = "<group>"; };
 		699457BB26C7F479002AD88D /* TodoList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TodoList.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -115,6 +117,7 @@
 			isa = PBXGroup;
 			children = (
 				85A1352D26CE1C5A00DBADF5 /* CalendarViewController.swift */,
+				321E3E9C26CF65450070432F /* CalendarTableViewCell.swift */,
 			);
 			path = Calendar;
 			sourceTree = "<group>";
@@ -244,6 +247,7 @@
 				708FADF526CDFDFE002B46F3 /* SearchViewController.swift in Sources */,
 				699457D326C7F603002AD88D /* ShareVar.swift in Sources */,
 				699457BF26C7F479002AD88D /* AppDelegate.swift in Sources */,
+				321E3E9D26CF65450070432F /* CalendarTableViewCell.swift in Sources */,
 				708FADF726CE08EC002B46F3 /* SearchTableViewCell.swift in Sources */,
 				699457C126C7F479002AD88D /* SceneDelegate.swift in Sources */,
 				85A1352E26CE1C5A00DBADF5 /* CalendarViewController.swift in Sources */,
@@ -397,6 +401,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = TodoList/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -404,7 +409,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.todo.TodoList;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -416,6 +421,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = TodoList/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -423,7 +429,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.todo.TodoList;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

@@ -11,6 +11,7 @@ import FSCalendar
 class CalendarViewController: UIViewController {
 
     @IBOutlet weak var calendar: FSCalendar!
+    @IBOutlet weak var calendarTableView: UITableView!
     
     let formatter = DateFormatter()
     var dates = [Date]()
@@ -21,8 +22,12 @@ class CalendarViewController: UIViewController {
         // Do any additional setup after loading the view.
         initDesignSetting()
         initFuncSetting()
+        
         calendar.delegate = self
         calendar.dataSource = self
+        
+        calendarTableView.delegate = self
+        calendarTableView.dataSource = self
     }
     
     func initDesignSetting() {
@@ -37,6 +42,8 @@ class CalendarViewController: UIViewController {
         
         calendar.appearance.eventSelectionColor = UIColor(displayP3Red: 65/255, green: 99/225, blue: 135/255, alpha: 1)
         calendar.appearance.eventDefaultColor = UIColor(displayP3Red: 65/255, green: 99/225, blue: 135/255, alpha: 1)
+        
+        calendarTableView.separatorStyle = .none
     }
     
     func initFuncSetting() {
@@ -79,4 +86,30 @@ extension CalendarViewController : FSCalendarDelegate, FSCalendarDataSource, FSC
         return 0
     }
     
+}
+
+extension CalendarViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = calendarTableView.dequeueReusableCell(withIdentifier: "calendarCell") as! CalendarTableViewCell
+        
+        cell.btnUncheck.tintColor = UIColor(displayP3Red: 65/255, green: 99/225, blue: 135/255, alpha: 1)
+        cell.btnCheck.tintColor = UIColor(displayP3Red: 65/255, green: 99/225, blue: 135/255, alpha: 1)
+        
+        cell.btnUncheck.isHidden = true
+        cell.btnCheck.isHidden = false
+        cell.lblTodo.text = "안녕하세요"
+
+        return cell
+    }
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+
+}
+
+extension CalendarViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 60
+    }
 }

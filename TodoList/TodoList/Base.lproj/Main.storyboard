@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="VVj-iA-UJp">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="VVj-iA-UJp">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -32,18 +34,79 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AcN-42-x0D" customClass="FSCalendar">
-                                <rect key="frame" x="20" y="44" width="374" height="465"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AcN-42-x0D" customClass="FSCalendar">
+                                <rect key="frame" x="20" y="44" width="374" height="456.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="vsS-mV-Tan">
+                                <rect key="frame" x="20" y="508.5" width="374" height="304.5"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="calendarCell" rowHeight="60" id="iIl-P5-CAk" customClass="CalendarTableViewCell" customModule="TodoList" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="374" height="60"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="iIl-P5-CAk" id="Jak-BN-UWU">
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="60"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s9b-bD-SXZ">
+                                                    <rect key="frame" x="20" y="19" width="25" height="22"/>
+                                                    <state key="normal">
+                                                        <imageReference key="image" image="circle" catalog="system" symbolScale="large"/>
+                                                    </state>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mtj-he-RqJ">
+                                                    <rect key="frame" x="20" y="19" width="25" height="22"/>
+                                                    <state key="normal">
+                                                        <imageReference key="image" image="checkmark.circle" catalog="system" symbolScale="large"/>
+                                                    </state>
+                                                </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="안녕하세요 테스트입니다." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wbu-7l-isJ">
+                                                    <rect key="frame" x="62" y="19" width="191" height="22"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="s9b-bD-SXZ" firstAttribute="top" secondItem="Jak-BN-UWU" secondAttribute="topMargin" constant="8" id="17x-Gt-tF8"/>
+                                                <constraint firstItem="s9b-bD-SXZ" firstAttribute="leading" secondItem="Jak-BN-UWU" secondAttribute="leadingMargin" id="4l1-dR-cxO"/>
+                                                <constraint firstItem="wbu-7l-isJ" firstAttribute="top" secondItem="Jak-BN-UWU" secondAttribute="topMargin" constant="8" id="WPF-re-Ky7"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="s9b-bD-SXZ" secondAttribute="bottom" constant="8" id="Ym6-Go-BOD"/>
+                                                <constraint firstItem="Mtj-he-RqJ" firstAttribute="top" secondItem="Jak-BN-UWU" secondAttribute="topMargin" constant="8" id="fqC-Bg-pvU"/>
+                                                <constraint firstItem="wbu-7l-isJ" firstAttribute="leading" secondItem="s9b-bD-SXZ" secondAttribute="trailing" constant="17" id="nWW-i8-PdN"/>
+                                                <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="wbu-7l-isJ" secondAttribute="trailing" constant="8" id="q5f-oC-TOc"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="wbu-7l-isJ" secondAttribute="bottom" constant="8" id="skn-Dq-1iH"/>
+                                                <constraint firstItem="Mtj-he-RqJ" firstAttribute="leading" secondItem="Jak-BN-UWU" secondAttribute="leadingMargin" id="w1q-5L-eD1"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="Mtj-he-RqJ" secondAttribute="bottom" constant="8" id="ygg-D8-Xof"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="btnCheck" destination="Mtj-he-RqJ" id="roi-gI-4C6"/>
+                                            <outlet property="btnUncheck" destination="s9b-bD-SXZ" id="d1G-U6-alR"/>
+                                            <outlet property="lblTodo" destination="wbu-7l-isJ" id="Xxr-qi-Rg7"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="grH-SZ-urg"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="AcN-42-x0D" firstAttribute="height" secondItem="vsS-mV-Tan" secondAttribute="height" multiplier="1.5" id="66b-sg-KJf"/>
+                            <constraint firstItem="vsS-mV-Tan" firstAttribute="top" secondItem="AcN-42-x0D" secondAttribute="bottom" constant="8" symbolic="YES" id="7mV-D7-WfF"/>
+                            <constraint firstItem="AcN-42-x0D" firstAttribute="top" secondItem="grH-SZ-urg" secondAttribute="top" id="Gx8-FP-Bo8"/>
+                            <constraint firstItem="vsS-mV-Tan" firstAttribute="bottom" secondItem="grH-SZ-urg" secondAttribute="bottom" id="HwF-oQ-bnO"/>
+                            <constraint firstItem="vsS-mV-Tan" firstAttribute="leading" secondItem="grH-SZ-urg" secondAttribute="leading" constant="20" id="LEg-Ae-W07"/>
+                            <constraint firstItem="grH-SZ-urg" firstAttribute="trailing" secondItem="AcN-42-x0D" secondAttribute="trailing" constant="20" id="T7s-hH-kkW"/>
+                            <constraint firstItem="grH-SZ-urg" firstAttribute="trailing" secondItem="vsS-mV-Tan" secondAttribute="trailing" constant="20" id="cPq-EF-s2p"/>
+                            <constraint firstItem="AcN-42-x0D" firstAttribute="leading" secondItem="grH-SZ-urg" secondAttribute="leading" constant="20" id="rvL-Li-5Bw"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Calendar" image="calendar" catalog="system" selectedImage="calendar" id="diw-du-WNf"/>
                     <connections>
                         <outlet property="calendar" destination="AcN-42-x0D" id="t61-mu-bBw"/>
+                        <outlet property="calendarTableView" destination="vsS-mV-Tan" id="UGl-eZ-d9W"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pKQ-lD-R6u" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -70,7 +133,7 @@
                                 <rect key="frame" x="0.0" y="114" width="414" height="699"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="Ow7-gT-vC1">
-                                    <rect key="frame" x="0.0" y="91.500000346790671" width="414" height="103"/>
+                                    <rect key="frame" x="0.0" y="98.5" width="414" height="103"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qs8-as-EIw">
@@ -92,7 +155,7 @@
                                 </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SearchTodoCell" id="af6-oX-H0T" customClass="SearchTableViewCell" customModule="TodoList" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="24.5" width="414" height="42.5"/>
+                                        <rect key="frame" x="0.0" y="28" width="414" height="42.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="af6-oX-H0T" id="rti-It-jjL">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="42.5"/>
@@ -248,6 +311,8 @@
     </scenes>
     <resources>
         <image name="calendar" catalog="system" width="128" height="106"/>
+        <image name="checkmark.circle" catalog="system" width="128" height="121"/>
+        <image name="circle" catalog="system" width="128" height="121"/>
         <image name="magnifyingglass" catalog="system" width="128" height="115"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>
         <image name="plus" catalog="system" width="128" height="113"/>
