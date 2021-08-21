@@ -18,6 +18,8 @@
 		708FADF526CDFDFE002B46F3 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 708FADF426CDFDFE002B46F3 /* SearchViewController.swift */; };
 		708FADF726CE08EC002B46F3 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 708FADF626CE08EC002B46F3 /* SearchTableViewCell.swift */; };
 		85A1352E26CE1C5A00DBADF5 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A1352D26CE1C5A00DBADF5 /* CalendarViewController.swift */; };
+		999C4F2226D160B000B93716 /* TodoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 999C4F2126D160B000B93716 /* TodoViewController.swift */; };
+		999C4F2426D1610C00B93716 /* TodoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 999C4F2326D1610C00B93716 /* TodoTableViewCell.swift */; };
 		D8DF69648F831E4E2463AB1E /* Pods_TodoList.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52AF64F63441CB9C9256D2C2 /* Pods_TodoList.framework */; };
 /* End PBXBuildFile section */
 
@@ -37,6 +39,8 @@
 		708FADF426CDFDFE002B46F3 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		708FADF626CE08EC002B46F3 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
 		85A1352D26CE1C5A00DBADF5 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
+		999C4F2126D160B000B93716 /* TodoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoViewController.swift; sourceTree = "<group>"; };
+		999C4F2326D1610C00B93716 /* TodoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoTableViewCell.swift; sourceTree = "<group>"; };
 		F33DB6E8A0C9E6B19FDC5446 /* Pods-TodoList.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TodoList.debug.xcconfig"; path = "Target Support Files/Pods-TodoList/Pods-TodoList.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -73,6 +77,7 @@
 		699457BD26C7F479002AD88D /* TodoList */ = {
 			isa = PBXGroup;
 			children = (
+				999C4F2026D1608D00B93716 /* Todo */,
 				85A1352C26CE1C3200DBADF5 /* Calendar */,
 				708FADF026CDF6B6002B46F3 /* Search */,
 				708FADEF26CDF299002B46F3 /* DTO */,
@@ -120,6 +125,15 @@
 				321E3E9C26CF65450070432F /* CalendarTableViewCell.swift */,
 			);
 			path = Calendar;
+			sourceTree = "<group>";
+		};
+		999C4F2026D1608D00B93716 /* Todo */ = {
+			isa = PBXGroup;
+			children = (
+				999C4F2126D160B000B93716 /* TodoViewController.swift */,
+				999C4F2326D1610C00B93716 /* TodoTableViewCell.swift */,
+			);
+			path = Todo;
 			sourceTree = "<group>";
 		};
 		E88E677D66E24A2EFEFC64A2 /* Frameworks */ = {
@@ -245,7 +259,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				708FADF526CDFDFE002B46F3 /* SearchViewController.swift in Sources */,
+				999C4F2226D160B000B93716 /* TodoViewController.swift in Sources */,
 				699457D326C7F603002AD88D /* ShareVar.swift in Sources */,
+				999C4F2426D1610C00B93716 /* TodoTableViewCell.swift in Sources */,
 				699457BF26C7F479002AD88D /* AppDelegate.swift in Sources */,
 				321E3E9D26CF65450070432F /* CalendarTableViewCell.swift in Sources */,
 				708FADF726CE08EC002B46F3 /* SearchTableViewCell.swift in Sources */,
