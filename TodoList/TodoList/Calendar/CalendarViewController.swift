@@ -138,7 +138,7 @@ class CalendarViewController: UIViewController { // 2021.08.19-21 조혜지 cale
             let tState = "1"
             let id = "\(String(describing: calendarList[sender.tag].id!))"
             
-            let queryString = "UPDATE todo SET tState=? where tDate = ? and id = ?"
+            let queryString = "UPDATE todo SET tState=? where id = ?"
             
             if sqlite3_prepare(db, queryString, -1, &stmt, nil) != SQLITE_OK {
                 let errmsg = String(cString: sqlite3_errmsg(db)!)
@@ -151,22 +151,16 @@ class CalendarViewController: UIViewController { // 2021.08.19-21 조혜지 cale
                 print("error binding tState: \(errmsg)")
                 return
             }
-
-            if sqlite3_bind_text(stmt, 2, tDate, -1, SQLITE_TRANSIENT) != SQLITE_OK {
-                let errmsg = String(cString: sqlite3_errmsg(db)!)
-                print("error binding tDate: \(errmsg)")
-                return
-            }
             
-            if sqlite3_bind_text(stmt, 3, id, -1, SQLITE_TRANSIENT) != SQLITE_OK {
+            if sqlite3_bind_text(stmt, 2, id, -1, SQLITE_TRANSIENT) != SQLITE_OK {
                 let errmsg = String(cString: sqlite3_errmsg(db)!)
-                print("error binding tDate: \(errmsg)")
+                print("error binding id: \(errmsg)")
                 return
             }
             
             if sqlite3_step(stmt) != SQLITE_DONE {
                 let errmsg = String(cString: sqlite3_errmsg(db)!)
-                print("failure updating student: \(errmsg)")
+                print("failure updating todo: \(errmsg)")
                 return
             }
             
@@ -184,7 +178,7 @@ class CalendarViewController: UIViewController { // 2021.08.19-21 조혜지 cale
             let tState = "0"
             let id = "\(String(describing: calendarList[sender.tag].id!))"
             
-            let queryString = "UPDATE todo SET tState=? where tDate = ? and id = ?"
+            let queryString = "UPDATE todo SET tState=? where id = ?"
             
             if sqlite3_prepare(db, queryString, -1, &stmt, nil) != SQLITE_OK {
                 let errmsg = String(cString: sqlite3_errmsg(db)!)
@@ -197,22 +191,16 @@ class CalendarViewController: UIViewController { // 2021.08.19-21 조혜지 cale
                 print("error binding tState: \(errmsg)")
                 return
             }
-
-            if sqlite3_bind_text(stmt, 2, tDate, -1, SQLITE_TRANSIENT) != SQLITE_OK {
-                let errmsg = String(cString: sqlite3_errmsg(db)!)
-                print("error binding tDate: \(errmsg)")
-                return
-            }
             
-            if sqlite3_bind_text(stmt, 3, id, -1, SQLITE_TRANSIENT) != SQLITE_OK {
+            if sqlite3_bind_text(stmt, 2, id, -1, SQLITE_TRANSIENT) != SQLITE_OK {
                 let errmsg = String(cString: sqlite3_errmsg(db)!)
-                print("error binding tDate: \(errmsg)")
+                print("error binding id: \(errmsg)")
                 return
             }
             
             if sqlite3_step(stmt) != SQLITE_DONE {
                 let errmsg = String(cString: sqlite3_errmsg(db)!)
-                print("failure updating student: \(errmsg)")
+                print("failure updating todo: \(errmsg)")
                 return
             }
             
@@ -230,7 +218,7 @@ class CalendarViewController: UIViewController { // 2021.08.19-21 조혜지 cale
             let tStar = "1"
             let id = "\(String(describing: calendarList[sender.tag].id!))"
             
-            let queryString = "UPDATE todo SET tStar=? where tDate = ? and id = ?"
+            let queryString = "UPDATE todo SET tStar=? where id = ?"
             
             if sqlite3_prepare(db, queryString, -1, &stmt, nil) != SQLITE_OK {
                 let errmsg = String(cString: sqlite3_errmsg(db)!)
@@ -243,22 +231,16 @@ class CalendarViewController: UIViewController { // 2021.08.19-21 조혜지 cale
                 print("error binding tState: \(errmsg)")
                 return
             }
-
-            if sqlite3_bind_text(stmt, 2, tDate, -1, SQLITE_TRANSIENT) != SQLITE_OK {
-                let errmsg = String(cString: sqlite3_errmsg(db)!)
-                print("error binding tDate: \(errmsg)")
-                return
-            }
             
-            if sqlite3_bind_text(stmt, 3, id, -1, SQLITE_TRANSIENT) != SQLITE_OK {
+            if sqlite3_bind_text(stmt, 2, id, -1, SQLITE_TRANSIENT) != SQLITE_OK {
                 let errmsg = String(cString: sqlite3_errmsg(db)!)
-                print("error binding tDate: \(errmsg)")
+                print("error binding id: \(errmsg)")
                 return
             }
             
             if sqlite3_step(stmt) != SQLITE_DONE {
                 let errmsg = String(cString: sqlite3_errmsg(db)!)
-                print("failure updating student: \(errmsg)")
+                print("failure updating todo: \(errmsg)")
                 return
             }
             
@@ -277,7 +259,7 @@ class CalendarViewController: UIViewController { // 2021.08.19-21 조혜지 cale
             let tStar = "0"
             let id = "\(String(describing: calendarList[sender.tag].id!))"
             
-            let queryString = "UPDATE todo SET tStar=? where tDate = ? and id = ?"
+            let queryString = "UPDATE todo SET tStar=? where id = ?"
             
             if sqlite3_prepare(db, queryString, -1, &stmt, nil) != SQLITE_OK {
                 let errmsg = String(cString: sqlite3_errmsg(db)!)
@@ -290,22 +272,16 @@ class CalendarViewController: UIViewController { // 2021.08.19-21 조혜지 cale
                 print("error binding tState: \(errmsg)")
                 return
             }
-
-            if sqlite3_bind_text(stmt, 2, tDate, -1, SQLITE_TRANSIENT) != SQLITE_OK {
-                let errmsg = String(cString: sqlite3_errmsg(db)!)
-                print("error binding tDate: \(errmsg)")
-                return
-            }
             
-            if sqlite3_bind_text(stmt, 3, id, -1, SQLITE_TRANSIENT) != SQLITE_OK {
+            if sqlite3_bind_text(stmt, 2, id, -1, SQLITE_TRANSIENT) != SQLITE_OK {
                 let errmsg = String(cString: sqlite3_errmsg(db)!)
-                print("error binding tDate: \(errmsg)")
+                print("error binding id: \(errmsg)")
                 return
             }
             
             if sqlite3_step(stmt) != SQLITE_DONE {
                 let errmsg = String(cString: sqlite3_errmsg(db)!)
-                print("failure updating student: \(errmsg)")
+                print("failure updating todo: \(errmsg)")
                 return
             }
             
@@ -334,8 +310,9 @@ extension CalendarViewController : FSCalendarDelegate, FSCalendarDataSource, FSC
     
 }
 
-// tableview cell data 넣기
 extension CalendarViewController: UITableViewDataSource {
+    
+    // tableview cell data 구성
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = calendarTableView.dequeueReusableCell(withIdentifier: "calendarCell") as! CalendarTableViewCell
         let selectToDoContent = calendarList[indexPath.row]
@@ -381,8 +358,56 @@ extension CalendarViewController: UITableViewDataSource {
         return cell
     }
 
+    // tableview cell 개수
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return calendarList.count
+    }
+    
+    // tableview cell 오늘 날짜만 삭제 가능하도록 설정
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        if tDate == formatter.string(from: now) {
+            return true
+        }else {
+            return false
+        }
+    }
+    
+    // tableview cell data 삭제
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if (editingStyle == .delete) {
+            var stmt: OpaquePointer?
+
+            let SQLITE_TRANSIENT = unsafeBitCast(-1, to: sqlite3_destructor_type.self)
+            
+            let id = "\(String(describing: calendarList[indexPath.row].id!))"
+            
+            let queryString = "DELETE FROM todo where id = ?"
+            
+            if sqlite3_prepare(db, queryString, -1, &stmt, nil) != SQLITE_OK {
+                let errmsg = String(cString: sqlite3_errmsg(db)!)
+                print("error preparing update: \(errmsg)")
+                return
+            }
+
+            if sqlite3_bind_text(stmt, 1, id, -1, SQLITE_TRANSIENT) != SQLITE_OK {
+                let errmsg = String(cString: sqlite3_errmsg(db)!)
+                print("error binding id: \(errmsg)")
+                return
+            }
+            
+            if sqlite3_step(stmt) != SQLITE_DONE {
+                let errmsg = String(cString: sqlite3_errmsg(db)!)
+                print("failure updating todo: \(errmsg)")
+                return
+            }
+            
+            self.readValues()
+        }
+    }
+    
+    // slide 시 "삭제" 라는 문구 등장
+    func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
+        return "삭제"
     }
 
 }
