@@ -430,29 +430,3 @@ extension CalendarViewController: UITableViewDelegate {
         return 50
     }
 }
-
-extension String { // 취소선 긋기
-    func strikeThrough() -> NSAttributedString {
-        let attributeString = NSMutableAttributedString(string: self)
-        attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: NSUnderlineStyle.single.rawValue, range: NSMakeRange(0,attributeString.length))
-        return attributeString
-    }
-    
-}
-
-extension NSMutableAttributedString {
-
-    func bold(string: String, fontSize: CGFloat) -> NSMutableAttributedString {
-        let font = UIFont.boldSystemFont(ofSize: fontSize)
-        let attributes: [NSAttributedString.Key: Any] = [.font: font]
-        self.append(NSAttributedString(string: string, attributes: attributes))
-        return self
-    }
-
-    func regular(string: String, fontSize: CGFloat) -> NSMutableAttributedString {
-        let font = UIFont.systemFont(ofSize: fontSize)
-        let attributes: [NSAttributedString.Key: Any] = [.font: font]
-        self.append(NSAttributedString(string: string, attributes: attributes))
-        return self
-    }
-}
