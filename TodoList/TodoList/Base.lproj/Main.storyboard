@@ -83,6 +83,9 @@
                                                         <color key="titleColor" systemColor="systemYellowColor"/>
                                                         <imageReference key="image" image="star" catalog="system" symbolScale="medium"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="btnNoStar:" destination="m9M-dC-5kR" eventType="touchUpInside" id="t7k-aD-IXy"/>
+                                                    </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eHc-Hq-h5B">
                                                     <rect key="frame" x="332" y="14" width="22" height="22"/>
@@ -94,6 +97,9 @@
                                                         <color key="titleColor" systemColor="systemYellowColor"/>
                                                         <imageReference key="image" image="star.fill" catalog="system" symbolScale="medium"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="btnStar:" destination="m9M-dC-5kR" eventType="touchUpInside" id="Tj6-h4-ZBy"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -117,6 +123,8 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="btnCheck" destination="Mtj-he-RqJ" id="roi-gI-4C6"/>
+                                            <outlet property="btnNoStar" destination="n5Y-qF-jmz" id="IJ6-Qg-TVS"/>
+                                            <outlet property="btnStar" destination="eHc-Hq-h5B" id="Ors-RC-dOd"/>
                                             <outlet property="btnUncheck" destination="s9b-bD-SXZ" id="d1G-U6-alR"/>
                                             <outlet property="lblTodo" destination="wbu-7l-isJ" id="Xxr-qi-Rg7"/>
                                         </connections>
