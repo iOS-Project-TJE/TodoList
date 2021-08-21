@@ -325,9 +325,21 @@ extension CalendarViewController: UITableViewDataSource {
         if selectToDoContent.tState == "1" {
             cell.btnUncheck.isHidden = true
             cell.btnCheck.isHidden = false
+            
+            let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: cell.lblTodo.text!)
+            attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 1, range: NSMakeRange(0, attributeString.length))
+            cell.lblTodo.attributedText = attributeString
+            let somePartStringRange = (cell.lblTodo.text! as NSString).range(of: cell.lblTodo.text!)
+            attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 2, range: somePartStringRange)
         }else {
             cell.btnUncheck.isHidden = false
             cell.btnCheck.isHidden = true
+            
+            let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: cell.lblTodo.text!)
+            attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 0, range: NSMakeRange(0, attributeString.length))
+            cell.lblTodo.attributedText = attributeString
+            let somePartStringRange = (cell.lblTodo.text! as NSString).range(of: cell.lblTodo.text!)
+            attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 0, range: somePartStringRange)
         }
         
         cell.btnUncheck.tag = indexPath.row
@@ -416,5 +428,31 @@ extension CalendarViewController: UITableViewDataSource {
 extension CalendarViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 50
+    }
+}
+
+extension String { // 취소선 긋기
+    func strikeThrough() -> NSAttributedString {
+        let attributeString = NSMutableAttributedString(string: self)
+        attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: NSUnderlineStyle.single.rawValue, range: NSMakeRange(0,attributeString.length))
+        return attributeString
+    }
+    
+}
+
+extension NSMutableAttributedString {
+
+    func bold(string: String, fontSize: CGFloat) -> NSMutableAttributedString {
+        let font = UIFont.boldSystemFont(ofSize: fontSize)
+        let attributes: [NSAttributedString.Key: Any] = [.font: font]
+        self.append(NSAttributedString(string: string, attributes: attributes))
+        return self
+    }
+
+    func regular(string: String, fontSize: CGFloat) -> NSMutableAttributedString {
+        let font = UIFont.systemFont(ofSize: fontSize)
+        let attributes: [NSAttributedString.Key: Any] = [.font: font]
+        self.append(NSAttributedString(string: string, attributes: attributes))
+        return self
     }
 }
