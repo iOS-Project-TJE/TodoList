@@ -59,6 +59,7 @@ class TodoViewController: UIViewController, UITextFieldDelegate{
     //todo 추가 버튼
     
     @IBAction func btnAdd(_ sender: UIButton) {
+        
         //오늘의 일정
         todo = tfAddTodo.text!.trimmingCharacters(in: .whitespacesAndNewlines)
         
@@ -74,7 +75,6 @@ class TodoViewController: UIViewController, UITextFieldDelegate{
     }//btnAdd
     
     // 체크 아닐때 -> 체크로
-
     @IBAction func btnTodoUnCheck(_ sender: UIButton) {
         var stmt: OpaquePointer?
 
@@ -153,9 +153,8 @@ class TodoViewController: UIViewController, UITextFieldDelegate{
         
     }//btnTodoCheck
     
-    // 중요도 체크 안했을때 -> 별 채우기
-
     
+    // 중요도 체크 안했을때 -> 별 채우기
     @IBAction func btnStar(_ sender: UIButton) {
         var stmt: OpaquePointer?
 
@@ -195,8 +194,6 @@ class TodoViewController: UIViewController, UITextFieldDelegate{
     }//btnStar
     
     //중요도 체크 O -> 중요도 체크 해제
-
-    
     @IBAction func btnStarFill(_ sender: UIButton) {
         var stmt: OpaquePointer?
 
@@ -261,7 +258,7 @@ class TodoViewController: UIViewController, UITextFieldDelegate{
         
         //현재 날짜
         let date = currentDate
-        // Init Array
+        
         // 1. 기존 화면 떠있는 애들을 지워주기  + 새롭게 구성하기
         addTodoList.removeAll()
         
@@ -280,22 +277,15 @@ class TodoViewController: UIViewController, UITextFieldDelegate{
         
         // 한줄씩 가져오기
         while (sqlite3_step(stmt) == SQLITE_ROW) {
-            // Int 값 불러오기
+            
             let id = sqlite3_column_int(stmt, 0)
-            // String 값 불러오기
             let tDate = String(cString: sqlite3_column_text(stmt, 1))
             let tList = String(cString: sqlite3_column_text(stmt, 2))
             let tState = String(cString: sqlite3_column_text(stmt, 3))
             let tStar = String(cString: sqlite3_column_text(stmt, 4))
 
-            
-            // Data 잘 들어갔나 확인
-            print(id, tDate, tList, tState, tStar)
-            
-            // describing:
             addTodoList.append(Todolist(id: Int(id), tDate: tDate, tList: tList, tState: tState, tStar: tStar))
         }
-        // 값이 들어왔으면 table 재구성
         self.tvTodoList.reloadData()
         
         lblTodayDate.text = currentDate
@@ -307,7 +297,6 @@ class TodoViewController: UIViewController, UITextFieldDelegate{
     func insertTodoValues(_ todo: String){
 
         var stmt: OpaquePointer?
-        // 한글 깨짐 방지 (-1 는 2byte의 범위를 잡아주는 것이다)
         let SQLITE_TRANSIENT = unsafeBitCast(-1, to: sqlite3_destructor_type.self)
 
         let formatter = DateFormatter()
@@ -316,44 +305,38 @@ class TodoViewController: UIViewController, UITextFieldDelegate{
         //현재 날짜
         let date = currentDate
         
-        print("todo 어떻게 들어오나\(todo)")
-
         let queryString = "INSERT INTO todo(tDate, tList, tState, tStar) VALUES (?,?,?,?)"
 
-        // != SQLITE_OK 가 아니면 {  } 실행
         if sqlite3_prepare(db, queryString, -1, &stmt, nil) != SQLITE_OK{
             let errmsg = String(cString: sqlite3_errmsg(db)!)
             print("error preparing insert : \(errmsg)")
-            return    // return 할께 없는게 이게 있으면? 그냥 함수를 빠져나가는 것이다!
+            return
         }
 
-        // 1번째 VALUES(?) 처리
         if sqlite3_bind_text(stmt, 1, date, -1, SQLITE_TRANSIENT) != SQLITE_OK{
             let errmsg = String(cString: sqlite3_errmsg(db)!)
             print("error binding content : \(errmsg)")
             return
         }
-        // 2번째 VALUES(?) 처리
+        
         if sqlite3_bind_text(stmt, 2, todo, -1, SQLITE_TRANSIENT) != SQLITE_OK{
             let errmsg = String(cString: sqlite3_errmsg(db)!)
             print("error binding date : \(errmsg)")
             return
         }
         
-        // 3번째 VALUES(?) 처리
         if sqlite3_bind_text(stmt, 3, state, -1, SQLITE_TRANSIENT) != SQLITE_OK{
             let errmsg = String(cString: sqlite3_errmsg(db)!)
             print("error binding date : \(errmsg)")
             return
         }
         
-        // 4번째 VALUES(?) 처리
         if sqlite3_bind_text(stmt, 4, star, -1, SQLITE_TRANSIENT) != SQLITE_OK{
             let errmsg = String(cString: sqlite3_errmsg(db)!)
             print("error binding date : \(errmsg)")
             return
         }
-        // 실행시키기
+        
         if sqlite3_step(stmt) != SQLITE_DONE{
             let errmsg = String(cString: sqlite3_errmsg(db)!)
             print("failure inserting search : \(errmsg)")
@@ -390,9 +373,23 @@ extension TodoViewController: UITableViewDataSource, UITableViewDelegate {
         if content.tState == "1" {
             cell.btnTodoUnCheck.isHidden = true
             cell.btnTodoCheck.isHidden = false
+            
+            //취소선
+            let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: cell.lblTodo.text!)
+            attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 1, range: NSMakeRange(0, attributeString.length))
+            cell.lblTodo.attributedText = attributeString
+            let somePartStringRange = (cell.lblTodo.text! as NSString).range(of: cell.lblTodo.text!)
+            attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 2, range: somePartStringRange)
+            
         }else {
             cell.btnTodoUnCheck.isHidden = false
             cell.btnTodoCheck.isHidden = true
+            
+            let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: cell.lblTodo.text!)
+            attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 0, range: NSMakeRange(0, attributeString.length))
+            cell.lblTodo.attributedText = attributeString
+            let somePartStringRange = (cell.lblTodo.text! as NSString).range(of: cell.lblTodo.text!)
+            attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 0, range: somePartStringRange)
         }
         
         cell.btnTodoUnCheck.tag = indexPath.row
@@ -421,32 +418,27 @@ extension TodoViewController: UITableViewDataSource, UITableViewDelegate {
         func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
             if editingStyle == .delete {
                 var stmt: OpaquePointer?
-                // 한글 깨짐 방지 (-1 는 2byte의 범위를 잡아주는 것이다)
                 _ = unsafeBitCast(-1, to: sqlite3_destructor_type.self)
 
-                let content = addTodoList[indexPath.row]
-                let queryString = "DELETE FROM todo WHERE id = '\(content)'"
-                print(queryString)
+                let id = "\(String(describing: addTodoList[indexPath.row].id!))"
+                let queryString = "DELETE FROM todo WHERE id = '\(id)'"
                 
-                // != SQLITE_OK 가 아니면 {  } 실행
                 if sqlite3_prepare(db, queryString, -1, &stmt, nil) != SQLITE_OK{
                     let errmsg = String(cString: sqlite3_errmsg(db)!)
                     print("error preparing delete : \(errmsg)")
-                    return    // return 할께 없는게 이게 있으면? 그냥 함수를 빠져나가는 것이다!
+                    return
                 }
 
-                // 실행시키기
                 if sqlite3_step(stmt) != SQLITE_DONE{
                     let errmsg = String(cString: sqlite3_errmsg(db)!)
                     print("failure deleting search : \(errmsg)")
                     return
                 }
                 
-                // 오류가 있으면 return 으로 함수 밖으로 나가게 되기때문에 여기까지 오지 못한다.
-                // 이게 print 되면 이상이 없다는 의미!
                 print("Search info delete successfully")
                 self.addTodoList.remove(at: indexPath.row)
                 self.tvTodoList.deleteRows(at: [indexPath], with: .fade)
+                
             }
         } // SQLite : DELETE - WHERE
     
