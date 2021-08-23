@@ -90,7 +90,7 @@
                                                     </constraints>
                                                     <color key="tintColor" red="0.25490196079999999" green="0.38823529410000002" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
                                                     <state key="normal">
-                                                        <imageReference key="image" image="checkmark.circle.fill" catalog="system" symbolScale="large"/>
+                                                        <imageReference key="image" image="checkmark.circle" catalog="system" symbolScale="large"/>
                                                     </state>
                                                     <connections>
                                                         <action selector="btnTodoCheck:" destination="eHD-Rk-LcV" eventType="touchUpInside" id="XvA-xe-Jnw"/>
@@ -544,7 +544,6 @@
     <resources>
         <image name="calendar" catalog="system" width="128" height="106"/>
         <image name="checkmark.circle" catalog="system" width="128" height="121"/>
-        <image name="checkmark.circle.fill" catalog="system" width="128" height="121"/>
         <image name="circle" catalog="system" width="128" height="121"/>
         <image name="magnifyingglass" catalog="system" width="128" height="115"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>
