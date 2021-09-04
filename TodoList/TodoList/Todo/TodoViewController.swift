@@ -55,6 +55,10 @@ class TodoViewController: UIViewController, UITextFieldDelegate{
         readValues()
         tvTodoList.reloadData()
     }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
    
     //todo 추가 버튼
     
@@ -65,6 +69,8 @@ class TodoViewController: UIViewController, UITextFieldDelegate{
         
         // 추가되고 textfield 없애기
         tfAddTodo.text?.removeAll()
+        
+        self.view.endEditing(true)
         
         // sqlite todo 정보 넣기
         insertTodoValues(todo)

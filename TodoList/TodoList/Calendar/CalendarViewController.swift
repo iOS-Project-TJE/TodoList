@@ -83,7 +83,6 @@ class CalendarViewController: UIViewController { // 2021.08.19-21 조혜지 cale
         dotList.removeAll()
         
         let queryString = "SELECT tDate FROM todo GROUP BY tDate"
-        print(queryString)
         
         var stmt: OpaquePointer?
 
@@ -418,8 +417,14 @@ extension CalendarViewController: UITableViewDataSource {
     }
     
     // slide 시 "삭제" 라는 문구 등장
-    func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
-        return "삭제"
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let actionsDelete = UIContextualAction(style: .normal, title: "Delete", handler: { action, view, completionHaldler in
+            completionHaldler(true)
+        })
+        actionsDelete.backgroundColor = #colorLiteral(red: 0.3192519248, green: 0.4669253826, blue: 0.6003069282, alpha: 1)
+        actionsDelete.title = "삭제"
+        
+        return UISwipeActionsConfiguration(actions: [actionsDelete])
     }
 
 }
