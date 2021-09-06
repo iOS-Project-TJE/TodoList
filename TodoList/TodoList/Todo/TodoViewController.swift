@@ -30,9 +30,6 @@ class TodoViewController: UIViewController, UITextFieldDelegate{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-//        //텍스트필드 힌트 색상 변화
-//        tfAddTodo.attributedPlaceholder = NSAttributedString(string: "오늘의 할 일을 입력해주세요", attributes: [NSAttributedString.Key.foregroundColor : UIColor(named: "CustomedNavy") as Any])
         
         //텍스트 필드 글자 수 제한
         tfAddTodo.delegate = self
@@ -321,25 +318,25 @@ class TodoViewController: UIViewController, UITextFieldDelegate{
 
         if sqlite3_bind_text(stmt, 1, date, -1, SQLITE_TRANSIENT) != SQLITE_OK{
             let errmsg = String(cString: sqlite3_errmsg(db)!)
-            print("error binding content : \(errmsg)")
+            print("error binding date : \(errmsg)")
             return
         }
         
         if sqlite3_bind_text(stmt, 2, todo, -1, SQLITE_TRANSIENT) != SQLITE_OK{
             let errmsg = String(cString: sqlite3_errmsg(db)!)
-            print("error binding date : \(errmsg)")
+            print("error binding todo : \(errmsg)")
             return
         }
         
         if sqlite3_bind_text(stmt, 3, state, -1, SQLITE_TRANSIENT) != SQLITE_OK{
             let errmsg = String(cString: sqlite3_errmsg(db)!)
-            print("error binding date : \(errmsg)")
+            print("error binding state : \(errmsg)")
             return
         }
         
         if sqlite3_bind_text(stmt, 4, star, -1, SQLITE_TRANSIENT) != SQLITE_OK{
             let errmsg = String(cString: sqlite3_errmsg(db)!)
-            print("error binding date : \(errmsg)")
+            print("error binding star : \(errmsg)")
             return
         }
         
@@ -419,39 +416,32 @@ extension TodoViewController: UITableViewDataSource, UITableViewDelegate {
         return addTodoList.count
     }
     
-    
-    // SQLite : DELETE - WHERE
-        func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-            if editingStyle == .delete {
-                var stmt: OpaquePointer?
-                _ = unsafeBitCast(-1, to: sqlite3_destructor_type.self)
-
-                let id = "\(String(describing: addTodoList[indexPath.row].id!))"
-                let queryString = "DELETE FROM todo WHERE id = '\(id)'"
-                
-                if sqlite3_prepare(db, queryString, -1, &stmt, nil) != SQLITE_OK{
-                    let errmsg = String(cString: sqlite3_errmsg(db)!)
-                    print("error preparing delete : \(errmsg)")
-                    return
-                }
-
-                if sqlite3_step(stmt) != SQLITE_DONE{
-                    let errmsg = String(cString: sqlite3_errmsg(db)!)
-                    print("failure deleting search : \(errmsg)")
-                    return
-                }
-                
-                print("Search info delete successfully")
-                self.addTodoList.remove(at: indexPath.row)
-                self.tvTodoList.deleteRows(at: [indexPath], with: .fade)
-                
-            }
-        } // SQLite : DELETE - WHERE
-    
-    
+    //swipe 삭제
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let actionsDelete = UIContextualAction(style: .normal, title: "Delete", handler: { action, view, completionHaldler in
+        let actionsDelete = UIContextualAction(style: .normal, title: "Delete", handler: { [self] action, view, completionHaldler in
             completionHaldler(true)
+            var stmt: OpaquePointer?
+            _ = unsafeBitCast(-1, to: sqlite3_destructor_type.self)
+
+            let id = "\(String(describing: addTodoList[indexPath.row].id!))"
+            let queryString = "DELETE FROM todo WHERE id = '\(id)'"
+            
+            if sqlite3_prepare(db, queryString, -1, &stmt, nil) != SQLITE_OK{
+                let errmsg = String(cString: sqlite3_errmsg(db)!)
+                print("error preparing delete : \(errmsg)")
+                return
+            }
+
+            if sqlite3_step(stmt) != SQLITE_DONE{
+                let errmsg = String(cString: sqlite3_errmsg(db)!)
+                print("failure deleting search : \(errmsg)")
+                return
+            }
+            
+            print("Search info delete successfully")
+            self.addTodoList.remove(at: indexPath.row)
+            self.tvTodoList.deleteRows(at: [indexPath], with: .fade)
+            
         })
         actionsDelete.backgroundColor = #colorLiteral(red: 0.3192519248, green: 0.4669253826, blue: 0.6003069282, alpha: 1)
         actionsDelete.title = "삭제"

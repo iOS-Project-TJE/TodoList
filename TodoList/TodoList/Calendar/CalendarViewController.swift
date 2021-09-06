@@ -383,43 +383,38 @@ extension CalendarViewController: UITableViewDataSource {
         }
     }
     
-    // tableview cell data 삭제
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if (editingStyle == .delete) {
-            var stmt: OpaquePointer?
-
-            let SQLITE_TRANSIENT = unsafeBitCast(-1, to: sqlite3_destructor_type.self)
-            
-            let id = "\(String(describing: calendarList[indexPath.row].id!))"
-            
-            let queryString = "DELETE FROM todo where id = ?"
-            
-            if sqlite3_prepare(db, queryString, -1, &stmt, nil) != SQLITE_OK {
-                let errmsg = String(cString: sqlite3_errmsg(db)!)
-                print("error preparing update: \(errmsg)")
-                return
-            }
-
-            if sqlite3_bind_text(stmt, 1, id, -1, SQLITE_TRANSIENT) != SQLITE_OK {
-                let errmsg = String(cString: sqlite3_errmsg(db)!)
-                print("error binding id: \(errmsg)")
-                return
-            }
-            
-            if sqlite3_step(stmt) != SQLITE_DONE {
-                let errmsg = String(cString: sqlite3_errmsg(db)!)
-                print("failure updating todo: \(errmsg)")
-                return
-            }
-            
-            self.readValues()
-        }
-    }
-    
-    // slide 시 "삭제" 라는 문구 등장
+    //swipe 삭제
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let actionsDelete = UIContextualAction(style: .normal, title: "Delete", handler: { action, view, completionHaldler in
+        let actionsDelete = UIContextualAction(style: .normal, title: "Delete", handler: { [self] action, view, completionHaldler in
             completionHaldler(true)
+            var stmt: OpaquePointer?
+           
+           let SQLITE_TRANSIENT = unsafeBitCast(-1, to: sqlite3_destructor_type.self)
+
+           let id = "\(String(describing: calendarList[indexPath.row].id!))"
+
+           let queryString = "DELETE FROM todo where id = ?"
+
+           if sqlite3_prepare(db, queryString, -1, &stmt, nil) != SQLITE_OK {
+               let errmsg = String(cString: sqlite3_errmsg(db)!)
+               print("error preparing update: \(errmsg)")
+               return
+           }
+
+           if sqlite3_bind_text(stmt, 1, id, -1, SQLITE_TRANSIENT) != SQLITE_OK {
+               let errmsg = String(cString: sqlite3_errmsg(db)!)
+               print("error binding id: \(errmsg)")
+               return
+           }
+
+           if sqlite3_step(stmt) != SQLITE_DONE {
+               let errmsg = String(cString: sqlite3_errmsg(db)!)
+               print("failure updating todo: \(errmsg)")
+               return
+           }
+
+           self.readValues()
+            
         })
         actionsDelete.backgroundColor = #colorLiteral(red: 0.3192519248, green: 0.4669253826, blue: 0.6003069282, alpha: 1)
         actionsDelete.title = "삭제"
