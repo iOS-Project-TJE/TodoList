@@ -48,6 +48,11 @@ class SearchViewController: UIViewController , UITextFieldDelegate{
             print("error creating table: \(errmsg)")
         }
     }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
     //viewWillAppear 초기설정
     func pageSetting(){
         tfSearch.text=""
@@ -371,9 +376,11 @@ extension SearchViewController : UITableViewDataSource, UITableViewDelegate{
         }
     }
 
-    // 삭제
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if (editingStyle == .delete) {
+    
+    //swipe 삭제
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let actionsDelete = UIContextualAction(style: .normal, title: "Delete", handler: { [self] action, view, completionHaldler in
+            completionHaldler(true)
             var stmt: OpaquePointer?
 
             let SQLITE_TRANSIENT = unsafeBitCast(-1, to: sqlite3_destructor_type.self)
@@ -404,13 +411,11 @@ extension SearchViewController : UITableViewDataSource, UITableViewDelegate{
             }
             
             self.readValues()
-        }
+        })
+        actionsDelete.backgroundColor = #colorLiteral(red: 0.3192519248, green: 0.4669253826, blue: 0.6003069282, alpha: 1)
+        actionsDelete.title = "삭제"
+        
+        return UISwipeActionsConfiguration(actions: [actionsDelete])
     }
-    
-    // slide 시 "삭제" 라는 문구 등장
-    func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
-        return "삭제"
-    }
-    
   
 }

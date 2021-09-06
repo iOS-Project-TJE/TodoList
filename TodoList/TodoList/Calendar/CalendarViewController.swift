@@ -83,7 +83,6 @@ class CalendarViewController: UIViewController { // 2021.08.19-21 조혜지 cale
         dotList.removeAll()
         
         let queryString = "SELECT tDate FROM todo GROUP BY tDate"
-        print(queryString)
         
         var stmt: OpaquePointer?
 
@@ -384,42 +383,43 @@ extension CalendarViewController: UITableViewDataSource {
         }
     }
     
-    // tableview cell data 삭제
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if (editingStyle == .delete) {
+    //swipe 삭제
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let actionsDelete = UIContextualAction(style: .normal, title: "Delete", handler: { [self] action, view, completionHaldler in
+            completionHaldler(true)
             var stmt: OpaquePointer?
+           
+           let SQLITE_TRANSIENT = unsafeBitCast(-1, to: sqlite3_destructor_type.self)
 
-            let SQLITE_TRANSIENT = unsafeBitCast(-1, to: sqlite3_destructor_type.self)
-            
-            let id = "\(String(describing: calendarList[indexPath.row].id!))"
-            
-            let queryString = "DELETE FROM todo where id = ?"
-            
-            if sqlite3_prepare(db, queryString, -1, &stmt, nil) != SQLITE_OK {
-                let errmsg = String(cString: sqlite3_errmsg(db)!)
-                print("error preparing update: \(errmsg)")
-                return
-            }
+           let id = "\(String(describing: calendarList[indexPath.row].id!))"
 
-            if sqlite3_bind_text(stmt, 1, id, -1, SQLITE_TRANSIENT) != SQLITE_OK {
-                let errmsg = String(cString: sqlite3_errmsg(db)!)
-                print("error binding id: \(errmsg)")
-                return
-            }
+           let queryString = "DELETE FROM todo where id = ?"
+
+           if sqlite3_prepare(db, queryString, -1, &stmt, nil) != SQLITE_OK {
+               let errmsg = String(cString: sqlite3_errmsg(db)!)
+               print("error preparing update: \(errmsg)")
+               return
+           }
+
+           if sqlite3_bind_text(stmt, 1, id, -1, SQLITE_TRANSIENT) != SQLITE_OK {
+               let errmsg = String(cString: sqlite3_errmsg(db)!)
+               print("error binding id: \(errmsg)")
+               return
+           }
+
+           if sqlite3_step(stmt) != SQLITE_DONE {
+               let errmsg = String(cString: sqlite3_errmsg(db)!)
+               print("failure updating todo: \(errmsg)")
+               return
+           }
+
+           self.readValues()
             
-            if sqlite3_step(stmt) != SQLITE_DONE {
-                let errmsg = String(cString: sqlite3_errmsg(db)!)
-                print("failure updating todo: \(errmsg)")
-                return
-            }
-            
-            self.readValues()
-        }
-    }
-    
-    // slide 시 "삭제" 라는 문구 등장
-    func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
-        return "삭제"
+        })
+        actionsDelete.backgroundColor = #colorLiteral(red: 0.3192519248, green: 0.4669253826, blue: 0.6003069282, alpha: 1)
+        actionsDelete.title = "삭제"
+        
+        return UISwipeActionsConfiguration(actions: [actionsDelete])
     }
 
 }
