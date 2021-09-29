@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="VVj-iA-UJp">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="VVj-iA-UJp">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -24,7 +24,7 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="todoCell" id="YL0-et-yOd" customClass="TodoTableViewCell" customModule="TodoList">
-                                        <rect key="frame" x="0.0" y="24.5" width="374" height="44"/>
+                                        <rect key="frame" x="0.0" y="44.5" width="374" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="YL0-et-yOd" id="dMa-Hq-vrd">
                                             <rect key="frame" x="0.0" y="0.0" width="374" height="44"/>
@@ -133,29 +133,29 @@
                                 </prototypes>
                             </tableView>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="오늘의 할 일을 입력해주세요 :)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="v9k-fa-fxj">
-                                <rect key="frame" x="20" y="121" width="338" height="34"/>
+                                <rect key="frame" x="20" y="121" width="335" height="34"/>
                                 <color key="backgroundColor" systemColor="systemGray5Color"/>
                                 <color key="textColor" red="0.25490196079999999" green="0.38823529410000002" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" spellCheckingType="yes" keyboardAppearance="light"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Today's To do" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I5b-en-7XN">
-                                <rect key="frame" x="20" y="70" width="186.5" height="36"/>
+                                <rect key="frame" x="20" y="70" width="158.5" height="36"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="36" id="yCt-Go-RHW"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-Bold" family="Apple SD Gothic Neo" pointSize="30"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                 <color key="textColor" red="0.25490196079999999" green="0.38823529410000002" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="오늘 날짜" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LvP-7D-OSu">
-                                <rect key="frame" x="224.5" y="78" width="157.5" height="20"/>
+                                <rect key="frame" x="196.5" y="78" width="185.5" height="20"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1eT-39-KrQ">
-                                <rect key="frame" x="366" y="126" width="22" height="24"/>
+                                <rect key="frame" x="363" y="126" width="25" height="24"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <color key="tintColor" red="0.25490196079999999" green="0.38823529410000002" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal">
@@ -218,7 +218,7 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="calendarCell" rowHeight="50" id="iIl-P5-CAk" customClass="CalendarTableViewCell" customModule="TodoList" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="24.5" width="374" height="50"/>
+                                        <rect key="frame" x="0.0" y="44.5" width="374" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="iIl-P5-CAk" id="Jak-BN-UWU">
                                             <rect key="frame" x="0.0" y="0.0" width="374" height="50"/>
@@ -339,7 +339,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="magnifyingglass" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="2iQ-sb-UpH">
-                                <rect key="frame" x="40" y="65" width="30" height="28"/>
+                                <rect key="frame" x="40" y="64.5" width="30" height="28.5"/>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="30" id="VSb-qe-Jj4"/>
@@ -350,13 +350,13 @@
                                 <rect key="frame" x="0.0" y="114" width="414" height="699"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="Ow7-gT-vC1">
-                                    <rect key="frame" x="0.0" y="99.000000346790671" width="414" height="103"/>
+                                    <rect key="frame" x="0.0" y="117" width="414" height="103"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SearchTodoCell" rowHeight="50" id="af6-oX-H0T" customClass="SearchTableViewCell" customModule="TodoList" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="24.5" width="414" height="50"/>
+                                        <rect key="frame" x="0.0" y="44.5" width="414" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="af6-oX-H0T" id="rti-It-jjL">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
@@ -459,13 +459,13 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TODO를 검색해주세요" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mW3-uO-pDe">
-                                <rect key="frame" x="0.0" y="394" width="414" height="30"/>
+                                <rect key="frame" x="0.0" y="294" width="414" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <color key="textColor" name="MainColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="데이터가 없습니다" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7YL-KF-DWe">
-                                <rect key="frame" x="0.0" y="394" width="414" height="30"/>
+                                <rect key="frame" x="0.0" y="294" width="414" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <color key="textColor" name="MainColor"/>
                                 <nil key="highlightedColor"/>
@@ -479,12 +479,12 @@
                             <constraint firstItem="4O2-dr-sHp" firstAttribute="top" secondItem="K7Q-uo-kd6" secondAttribute="top" constant="20" id="Bqq-VG-n50"/>
                             <constraint firstItem="K7Q-uo-kd6" firstAttribute="bottom" secondItem="BJC-FM-iHp" secondAttribute="bottom" id="D4o-Ol-ndw"/>
                             <constraint firstItem="K7Q-uo-kd6" firstAttribute="trailing" secondItem="4O2-dr-sHp" secondAttribute="trailing" constant="40" id="I3H-9a-3hk"/>
-                            <constraint firstItem="7YL-KF-DWe" firstAttribute="top" secondItem="2iQ-sb-UpH" secondAttribute="bottom" constant="300" id="JSk-hW-Ccf"/>
+                            <constraint firstItem="7YL-KF-DWe" firstAttribute="top" secondItem="2iQ-sb-UpH" secondAttribute="bottom" constant="200" id="JSk-hW-Ccf"/>
                             <constraint firstItem="7YL-KF-DWe" firstAttribute="leading" secondItem="K7Q-uo-kd6" secondAttribute="leading" id="M0k-zO-fFM"/>
                             <constraint firstItem="BJC-FM-iHp" firstAttribute="leading" secondItem="K7Q-uo-kd6" secondAttribute="leading" id="adF-aM-tOi"/>
                             <constraint firstItem="4O2-dr-sHp" firstAttribute="leading" secondItem="2iQ-sb-UpH" secondAttribute="trailing" constant="5" id="bhD-KF-xk5"/>
                             <constraint firstItem="K7Q-uo-kd6" firstAttribute="trailing" secondItem="BJC-FM-iHp" secondAttribute="trailing" id="cnS-69-988"/>
-                            <constraint firstItem="mW3-uO-pDe" firstAttribute="top" secondItem="2iQ-sb-UpH" secondAttribute="bottom" constant="300" id="g2C-WT-dqk"/>
+                            <constraint firstItem="mW3-uO-pDe" firstAttribute="top" secondItem="2iQ-sb-UpH" secondAttribute="bottom" constant="200" id="g2C-WT-dqk"/>
                             <constraint firstItem="2iQ-sb-UpH" firstAttribute="top" secondItem="K7Q-uo-kd6" secondAttribute="top" constant="20" id="tug-pI-EtR"/>
                             <constraint firstItem="mW3-uO-pDe" firstAttribute="leading" secondItem="K7Q-uo-kd6" secondAttribute="leading" id="tyh-Lc-CnE"/>
                             <constraint firstItem="2iQ-sb-UpH" firstAttribute="leading" secondItem="K7Q-uo-kd6" secondAttribute="leading" constant="40" id="ufA-GW-1FT"/>
